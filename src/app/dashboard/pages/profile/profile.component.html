@@ -1,0 +1,91 @@
+<div class="container mt-4">
+        
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="card">
+                <div class="card-header">
+                    <h2 ><strong class="text-info">Datos personales</strong></h2>
+
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="formProfile" (ngSubmit)="formDataUser()" >
+
+                    <label for="nameUser"><strong>Nombre</strong></label>
+                    <input type="text" class="form-control" formControlName="nameUser"> 
+                    <div  [hidden]="nameUser.valid || nameUser.pristine">
+                        <span *ngIf ="nameUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                      </div> 
+
+                    <label for="lastnameUser" class="mt-2"><strong>Apellidos</strong></label>
+                    <input type="text" class="form-control"  formControlName="lastNameUser">
+                    <div  [hidden]="lastNameUser.valid || lastNameUser.pristine">
+                        <span *ngIf ="lastNameUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                      </div>
+
+                    <label for="telephoneUser" class="mt-2"><strong>Teléfono/Celular</strong></label>
+                    <input type="text" class="form-control"  formControlName="telephoneUser">
+                    <div  [hidden]="telephoneUser.valid || telephoneUser.pristine">
+                        <span *ngIf ="telephoneUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                      </div> 
+                    
+                    <label for="addressUser" class="mt-2"><strong>Dirección</strong></label>
+                    <input type="text" class="form-control"  formControlName="addressUser">
+                    <div  [hidden]="addressUser.valid || addressUser.pristine">
+                        <span *ngIf ="addressUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                      </div>  
+
+                    <label for="emailUser" class="mt-2"><strong>Email</strong></label>
+                    <input type="text" class="form-control"  formControlName="emailUser">
+                    <div  [hidden]="emailUser.valid || emailUser.pristine">
+                        <span *ngIf ="emailUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                      </div> 
+                    
+                    <button class="btn btn-primary mt-2">Guardar</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card">
+                <div class="card-header">
+                    <h2 ><strong class="text-info">Contraseña</strong></h2>
+                </div>
+                <div class="card-body">
+
+                    <!-- <img src="assets/user.jpg" class="img-circle" alt="Previsualización"> -->
+                    <form [formGroup]="formPassword" (ngSubmit)="formDataPass()" >
+                        <label for="actualPass" class="mt-3">Contraseña actual</label>
+                        <input type="password" class="form-control"  formControlName="passUser">
+                        <div  [hidden]="passUser.valid || passUser.pristine">
+                            <span *ngIf ="passUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                          </div> 
+
+                        <label for="newPass" class="mt-3">Contraseña nueva</label>
+                        <input type="password" class="form-control"  formControlName="newPassUser">
+                        <div  [hidden]="newPassUser.valid || newPassUser.pristine">
+                            <span *ngIf ="newPassUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                          </div> 
+
+                        <label for="confirmPass" class="mt-3">Confirmar contraseña</label>
+                        <input type="password" class="form-control"  formControlName="confirmPassUser">
+                        <div [hidden]="confirmPassUser.value == newPassUser.value">
+                            <span  class="text-danger">las contraseñas no coinciden</span>
+                        </div> 
+
+                        <button class="btn btn-primary mt-5">Cambiar contraseña</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="card">
+            <div class="card-header">
+                <h2><strong class="text-info">Fotos de perfil</strong></h2>
+                <!-- aqui van las fotos -->
+            </div>
+        </div>
+    </div>
+</div>

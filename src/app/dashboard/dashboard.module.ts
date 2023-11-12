@@ -9,12 +9,14 @@ import { BillingComponent } from './pages/billing/billing.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NavbarModule } from '../navbar/navbar.module';
 import { NavbarHomeComponent } from '../navbar/navbar-home/navbar-home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
     DashboardLayoutComponent,
     BillingComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
     ],
   imports: [
     CommonModule,

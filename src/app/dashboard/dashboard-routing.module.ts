@@ -4,6 +4,8 @@ import { DashboardLayoutComponent } from './layouts/dashboard-layout/dashboard-l
 import { loginGuard } from '../auth/guards/is-authenticated.guard';
 import { BillingComponent } from './pages/billing/billing.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+
 const routes: Routes = [
   { path: '',
     component: DashboardLayoutComponent,
@@ -11,6 +13,7 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomeComponent },
       { path: 'billing', component: BillingComponent },
+      { path: 'profile', component: ProfileComponent},
       { path: '**', redirectTo: 'home' },
     ]
   }
