@@ -1,0 +1,61 @@
+<app-navbar-landing-page></app-navbar-landing-page>
+<section class="mt-2">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 col-lg-10">
+        <div class="wrap d-md-flex">
+          <div class="login-wrap p-4 p-md-5">
+            <div class="d-flex">
+              <div class="w-100">
+                <h3 class="mb-4 text-center">Crear Cuenta</h3>
+              </div>
+            </div>
+            <form [formGroup]="formRegister" (ngSubmit)="onSubmit()" class="signin-form">
+              <div class="form-group mb-3">
+                <label class="label" for="name">Nombres</label>
+                <input type="text" class="form-control" formControlName="name" >
+                <div class="alert alert-danger mt-1" [hidden]="name.valid || name.pristine">
+                  <span *ngIf ="name.errors?.['required']">Campo de nombre vacío</span>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <label class="label" for="name">Apellidos</label>
+                <input type="text" class="form-control"formControlName="lastname">
+              </div>
+              
+              <div class="alert alert-danger mt-1" [hidden]="lastname.valid || lastname.pristine">
+                <span *ngIf ="lastname.errors?.['required']">Campo de nombre vacío</span>
+              </div>
+              <div class="form-group mb-3">
+                <label class="label" for="email">Correo Electronico</label>
+                <input type="email" class="form-control" formControlName="email">
+              </div>
+              <div class="alert alert-danger mt-1" [hidden]="email.valid || email.pristine">
+                <span *ngIf ="email.errors?.['required']">Campo de email vacío</span>
+                <span *ngIf ="email.errors?.['email']">El email debe ser válido</span>
+              </div>
+              <div class="form-group mb-3">
+                <label class="label" for="password">Contraseña</label>
+                <input type="password" class="form-control" formControlName="password" >
+              </div>
+              <div class="alert alert-danger mt-1" [hidden]="password.valid  || password.pristine">
+                <span *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</span>
+                <span *ngIf="password.errors?.['pattern']">La contraseña debe contener al menos una mayúscula y un número</span>
+              </div>
+              <div class="form-group">
+                <button type="submit"  class="form-control btn btn-primary rounded submit px-3">Registrar Datos</button>
+              </div>
+            </form>
+            <div class="mt-2 d-md-flex">
+            <div class="w-52 text-right">
+              <small class="text-center">¿Ya tienes una cuenta? <a data-toggle="tab" href="/auth/login">Accede aquí</a></small>
+            </div>
+          </div>
+          </div>
+          <img src="assets/evento1.jpg" class="img">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
