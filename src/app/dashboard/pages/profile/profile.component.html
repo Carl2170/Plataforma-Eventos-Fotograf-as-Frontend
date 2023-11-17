@@ -22,10 +22,10 @@
                         <span *ngIf ="lastNameUser.errors?.['required']" class="text-danger">Campo vacío</span>
                       </div>
 
-                    <label for="telephoneUser" class="mt-2"><strong>Teléfono/Celular</strong></label>
-                    <input type="text" class="form-control"  formControlName="telephoneUser">
-                    <div  [hidden]="telephoneUser.valid || telephoneUser.pristine">
-                        <span *ngIf ="telephoneUser.errors?.['required']" class="text-danger">Campo vacío</span>
+                    <label for="telePhoneUser" class="mt-2"><strong>Teléfono/Celular</strong></label>
+                    <input type="text" class="form-control"  formControlName="telePhoneUser">
+                    <div  [hidden]="telePhoneUser.valid || telePhoneUser.pristine">
+                        <span *ngIf ="telePhoneUser.errors?.['required']" class="text-danger">Campo vacío</span>
                       </div> 
                     
                     <label for="addressUser" class="mt-2"><strong>Dirección</strong></label>
@@ -84,7 +84,20 @@
         <div class="card">
             <div class="card-header">
                 <h2><strong class="text-info">Fotos de perfil</strong></h2>
-                <!-- aqui van las fotos -->
+                <input type="file" class="btn btn-primary" (change)="onFileSelected($event)" multiple />
+                <button style="margin-left: 10px;" class="btn btn-success" *ngIf="existPhotos()" (click)="uploadImages()">Guardar fotos</button>
+                <button style="margin-left: 10px;" class="btn btn-danger" *ngIf="existPhotos()" (click)="removeAllPreviewImages()">Eliminar todas</button>
+
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div *ngFor="let imageUrl of imagesService.previewImages$ | async; let i = index" class="col">
+                            <img [src]="imageUrl" alt="Preview" class="img-fluid" style="max-width: 400px;">
+                            <div class="d-flex justify-content-start mt-3">
+                            <button (click)="removePreviewImage(i)">Eliminar</button>
+                            </div>
+                   </div>
+                  </div>
             </div>
         </div>
     </div>

@@ -19,6 +19,9 @@ export class NavbarHomeComponent {
 
   constructor(private router:Router ){}
 
+  redirectProfile(){
+    this.router.navigate(['profile']);
+  }
   logout(){
     localStorage.removeItem('auth');
     this.router.navigate(['auth/login']);

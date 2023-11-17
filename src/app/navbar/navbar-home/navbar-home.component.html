@@ -9,7 +9,6 @@
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a href="" class="nav-link">Opcion 1</a>
                 </li>
                 <li class="nav-item">
                     <a href="" class="nav-link">Opcion 1</a>
@@ -17,18 +16,18 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
-                <div class="dropdown-center me-1">
-                    <a class=" dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      <img src="assets/foto3.png"  class="profile-pic "  width="30" height="30">
+                <div class="dropdown-center ">
+                    <a class="text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Nombre
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-end">
                       <li class="text-md-center mb-2">
-                        <img src="assets/foto3.png"  class="rounded-circle  mb-2"  width="60" height="60" >
                         <p class=""style="margin:0">nombre </p>
                        <small style="margin:0"><strong>subscripcion </strong></small> 
                       </li>
           
-                      <li><a  *ngIf="" class="dropdown-item"  >Mi perfil</a></li>
+                      <li><a (click)="redirectProfile()" class="dropdown-item">Mi perfil</a>
+                      </li>
                       <li><hr class="dropdown-divider"></li>
 
                       <li><a *ngIf="!verifRoute('auth/login')" class="dropdown-item" (click)="logout()" >Cerrar sesión</a></li>
