@@ -11,19 +11,19 @@
                 <li class="nav-item">
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">Opcion 1</a>
+                    <a (click)="redirectEvents()" class="nav-link">Eventos</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 
                 <div class="dropdown-center ">
                     <a class="text-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Nombre
+                      {{name}}
                     </a>
                     <ul class="dropdown-menu  dropdown-menu-end">
                       <li class="text-md-center mb-2">
-                        <p class=""style="margin:0">nombre </p>
-                       <small style="margin:0"><strong>subscripcion </strong></small> 
+                        <p class=""style="margin:0"> {{name}} </p>
+                       <small style="margin:0"><strong> {{subscription}} </strong></small> 
                       </li>
           
                       <li><a (click)="redirectProfile()" class="dropdown-item">Mi perfil</a>

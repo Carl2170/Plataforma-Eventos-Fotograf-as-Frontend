@@ -1,0 +1,69 @@
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="text-primary">Registrar evento</h2>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="formEvent" (ngSubmit)="saveEvent()">
+                <div class="row mt-2">
+                    <div class="col-lg-6">
+                        <label for="name"> <strong>Nombre</strong></label>
+                        <input type="text" class="form-control" formControlName="name">
+                    </div>
+                    
+                    <div class="col-lg-6">
+                        <label for="name"> <strong>Descripción</strong></label>
+                        <input type="text" class="form-control"  formControlName="description">
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-lg-3">
+                       <label for="name"><strong>Fecha</strong></label>
+                        <input type="date" class="form-control"  formControlName="date">
+                    </div>
+                    <div class="col-lg-3">
+                        <label for="name"><strong>Hora</strong></label>
+                        <input type="time" class="form-control"  formControlName="time">
+                    </div>
+                    <div class="col-lg-3 mt-4">
+                        <button class="btn btn-success">Registrar</button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </div>
+   
+     <!-- lista de eventos -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h2 class="text-primary">Lista de eventos</h2>
+        </div>
+        <div class="card-body">
+            <div *ngIf="mjsError" class="alert alert-danger mt-1" >
+                <Strong >No tiene eventos</Strong>
+            </div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                  <tr >
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Fecha y hora</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody class="table-group-divider">
+               
+                     <tr *ngFor="let event of events">
+                     <td>{{event.name}}</td>
+                     <td>{{event.description}} </td>
+                     <td>{{event.date_time}} </td>
+                     <td>
+                        <button (click)="toInvitation(event.id)" class="btn btn-primary">+ Asistentes</button>
+                    </td>
+                    </tr>
+          
+                </tbody>
+              </table>
+
+    </div>
+</div>

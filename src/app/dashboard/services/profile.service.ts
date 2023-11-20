@@ -42,7 +42,7 @@ export class ProfileService {
     );
   }
   
-  updateImagesProfile( arrayImages: string []){
+  updateImagesProfile( arrayImages : string[]){
     const token = localStorage.getItem('auth');
     
     const headers = new HttpHeaders({
@@ -50,7 +50,9 @@ export class ProfileService {
     });
 
     return(
-       this.http.put(`${this.apiURL}/update-images-profile`,  { arrayAttribute: JSON.stringify(arrayImages) }, { headers })
-     );
+      //  this.http.put(`${this.apiURL}/update-images-profile`,  { arrayAttribute: JSON.stringify(arrayImages) }, { headers })
+              this.http.put(`${this.apiURL}/update-images-profile`, {arrayImages: JSON.stringify(arrayImages)}, { headers })
+
+      );
   }
 }

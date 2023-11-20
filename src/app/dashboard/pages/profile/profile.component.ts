@@ -23,13 +23,17 @@ export class ProfileComponent {
   public arrayUrlCloudinary: string[]=[]
   public imageFiles: File[] = [];
 
+  public arrayImagesProfile :string[] = []
+  itemsPerPage: number = 3;
+  currentPage: number = 1;
+  totalPages: number = 0;
+
   public formProfile : FormGroup = this.fb.group({
     nameUser:  ["",Validators.required],
     lastNameUser: ["",Validators.required],
     emailUser: ["",Validators.required],
     addressUser: ["",Validators.required],
     telePhoneUser: ["",Validators.required],
-    //imagesProfile : [],
     
   })
 
@@ -65,6 +69,8 @@ export class ProfileComponent {
         this.user = data;
         console.log(this.user);
         
+        this.loadImages(this.user.imagesProfile);
+
         this.formProfile.patchValue({
           nameUser:this.user.name,
           lastNameUser: this.user.lastname,
@@ -134,7 +140,6 @@ export class ProfileComponent {
     }
     }
   
-    
   removePreviewImage(index: number): void {
     this.imagesService.removePreviewImage(index);
   }
@@ -160,27 +165,12 @@ export class ProfileComponent {
     if (input?.files) {
       for (let index = 0; index < input.files.length; index++) {
         this.imageFiles.push(input.files[index]);
-
-        // if (this.imageNew) {
-        //   try {
-        //     const response = this.imagesService.uploadImage(this.imageNew).toPromise();
-        //     if ('url' in response) {
-        //       const url = response.url as string;
-        //       this.arrayUrlCloudinary.push(url)
-        //     }
-        //   } catch (error) {
-        //     console.error('Error al subir la imagen:', error);
-        //   }
-        // }
       }
     }
 
   }
 
   async uploadImages(){
-    // const arrayUpload = this.imagesService.getArrayImages();
-      // console.log("profile-com: uploadImages: "+ arrayUpload);
-      // const arrayUpload = this.imagesService.getArrayImages();
     const arrayUpload = this.imageFiles
       console.log(arrayUpload);
       try {
@@ -191,25 +181,46 @@ export class ProfileComponent {
             const url = response.url as string;
             this.arrayUrl.push(url);
           }
-          this.profileService.updateImagesProfile(this.arrayUrl).subscribe(
+        }
+          const form =  this.arrayUrl;
+         //const form =  ['uno', 'dos', 'tres']; 
+         console.log(form);
+          
+          this.profileService.updateImagesProfile(form).subscribe(
             (res) => {
+              console.log('response backend: ' + res);
               this.sweetAlertService.sweetAlert2('Añadidas con éxito','Imagenes añadidas al perfil','success', false, false);
             },
             (error) => {
               console.error('Error:', error);
             }
           )
-        }
-
+       
       } catch (error) {
-          console.log(error);
-                  
+          console.log(error);                  
       }
-      
-
   }
 
   existPhotos(){
     return this.imagesService.existPhotos();
   }
+
+  loadImages(images:string[]) {
+    this.arrayImagesProfile = images
+    this.calculateTotalPages(); // Calcular el número total de páginas al obtener las imágenes
+    this.changePage(1); // Cargar la primera página
+  }
+
+  calculateTotalPages() {
+    this.totalPages = Math.ceil(this.arrayImagesProfile.length / this.itemsPerPage);
+  }
+
+  changePage(pageNumber: number) {
+    this.currentPage = pageNumber;
+  }
+
+  pages(): number[] {
+    return Array.from({ length: this.totalPages }, (_, index) => index + 1);
+  }
+
 }

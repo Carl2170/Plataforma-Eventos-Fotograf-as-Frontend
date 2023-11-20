@@ -1,27 +1,50 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProfileService} from '../../dashboard/services/profile.service'
 
 @Component({
   selector: 'app-navbar-home',
   templateUrl: './navbar-home.component.html',
   styleUrls: ['./navbar-home.component.scss',
-              '../landing-page/css/bootstrap.min.css',
-              '../landing-page/css/bootstrap-theme.css',
-              '../landing-page/css/bootstrap-theme.min.css',
-              '../landing-page/css/fontAwesome.css',
-              '../landing-page/css/hero-slider.css',
-              '../landing-page/css/bootstrap.css',
+              // '../landing-page/css/bootstrap.min.css',
+              // '../landing-page/css/bootstrap-theme.css',
+              // '../landing-page/css/bootstrap-theme.min.css',
+              // '../landing-page/css/fontAwesome.css',
+              // '../landing-page/css/hero-slider.css',
+              // '../landing-page/css/bootstrap.css',
 
   ]
 
 })
 export class NavbarHomeComponent {
+  public token : any;
+  public user : any;
+  public name : string = "";
+  public subscription : string = "";
+  constructor(private router:Router, private profileService: ProfileService ){}
 
-  constructor(private router:Router ){}
-
+  ngOnInit(){
+    this.token = localStorage.getItem('auth');
+    this.profileService.getUserProfile(this.token).subscribe(
+      (data) => {
+        this.user = data;
+        this.name = this.user.name;
+        //constante por el momento
+        this.subscription = "Free";        
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
   redirectProfile(){
     this.router.navigate(['profile']);
   }
+
+  redirectEvents(){
+    this.router.navigate(['event']);
+  }
+  
   logout(){
     localStorage.removeItem('auth');
     this.router.navigate(['auth/login']);

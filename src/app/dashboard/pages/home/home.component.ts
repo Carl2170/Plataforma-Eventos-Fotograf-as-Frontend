@@ -22,10 +22,8 @@ export class HomeComponent {
         this.user = data
         console.log(this.user.imagesProfile);
         
-        if(this.user.imagesProfile == null){
+        if(this.user.imagesProfile.length < 0){
           this.msjCompletePhotos = "Por favor agrege fotos a su perfil";
-        }else{
-          this.msjCompletePhotos = "Tiene fotos"
         }
       },
       (error) => {

@@ -1,6 +1,9 @@
 import { Component, inject } from '@angular/core';
 import{ FormGroup,FormControl, Validators, FormBuilder} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { SweetAlertService } from '../../../dashboard/services/sweet-alert.service';
+
 
 @Component({
   selector: 'app-register-page',
@@ -8,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
-  constructor(private authService: AuthService){}
+  constructor(private authService: AuthService, private router: Router, public sweetAlert : SweetAlertService){}
 
   private fb: FormBuilder = inject(FormBuilder);
 
@@ -51,7 +54,7 @@ export class RegisterPageComponent {
   }
 
    onSubmit(){
-    if (this.isFormValid()) {
+    
       const formData = {
         name: this.name.value,
         lastname: this.lastname.value,
@@ -61,14 +64,16 @@ export class RegisterPageComponent {
       console.log(formData)
       this.authService.postRegister(formData).subscribe(
         (res)=>{
+          this.sweetAlert.sweetAlert2('Registro Existoso','Ya has creado una nueva cuenta','success',true,false);
+          this.router.navigate(['login']);
           console.log('Backend response: ', res);
+       
         },
         (error)=>{
           console.error('Error: ', error);
         }
+
       );
-    } else{
-      this.formRegister.markAllAsTouched();
-    }
+   
   }
 }
