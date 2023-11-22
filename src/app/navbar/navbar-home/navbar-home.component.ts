@@ -6,12 +6,12 @@ import { ProfileService} from '../../dashboard/services/profile.service'
   selector: 'app-navbar-home',
   templateUrl: './navbar-home.component.html',
   styleUrls: ['./navbar-home.component.scss',
-              // '../landing-page/css/bootstrap.min.css',
-              // '../landing-page/css/bootstrap-theme.css',
-              // '../landing-page/css/bootstrap-theme.min.css',
-              // '../landing-page/css/fontAwesome.css',
-              // '../landing-page/css/hero-slider.css',
-              // '../landing-page/css/bootstrap.css',
+              '../landing-page/css/bootstrap.min.css',
+              '../landing-page/css/bootstrap-theme.css',
+              '../landing-page/css/bootstrap-theme.min.css',
+              '../landing-page/css/fontAwesome.css',
+              '../landing-page/css/hero-slider.css',
+              '../landing-page/css/bootstrap.css',
 
   ]
 
@@ -27,6 +27,8 @@ export class NavbarHomeComponent {
     this.token = localStorage.getItem('auth');
     this.profileService.getUserProfile(this.token).subscribe(
       (data) => {
+        console.log(data);
+        
         this.user = data;
         this.name = this.user.name;
         //constante por el momento

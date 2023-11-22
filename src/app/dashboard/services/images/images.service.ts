@@ -22,43 +22,7 @@ export class ImagesService {
 
   
   uploadImage(file: File | string){
-    // const formData = new FormData();
-
-    // if( Array.isArray(file)){
-    //   console.log("Es un array de string");
-      
-    //    for (let i = 0; i < file.length; i++) {
-    //     const element = file[i];
-    //     formData.append('file', element);
-    //     formData.append('upload_preset', 'ml_default');
-    //     this.http.post(this.cloudinaryUrl, formData).pipe(
-    //       map((response: any) => {
-    //         return response;
-    //         console.log('imagen subida');
-    //       }),
-    //       catchError((error) => {
-    //         console.error('Error en la carga de la imagen:', error);
-    //         throw error;
-    //       })      
-    //     )
-    //   }
-      
-    //   return; 
-    // }else{
-    //   formData.append('file', file);
-    //   formData.append('upload_preset', 'ml_default');
-    
-    //    this.http.post(this.cloudinaryUrl, formData).pipe(
-    //     map((response: any) => {
-    //       return response;
-    //       console.log('imagen subida');
-    //     }),
-    //     catchError((error) => {
-    //       console.error('Error en la carga de la imagen:', error);
-    //       throw error;
-    //     })
-    //   );
-    // }
+  
     const formData = new FormData();
     formData.append('file', file);
     formData.append('upload_preset', "ml_default");

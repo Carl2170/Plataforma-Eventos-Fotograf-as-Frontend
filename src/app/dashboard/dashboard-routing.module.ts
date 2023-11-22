@@ -7,6 +7,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EventsComponent } from './pages/events/events.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 const routes: Routes = [
   { path: '',
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'profile', component: ProfileComponent},
       { path: 'event', component: EventsComponent},
       { path: 'invitations', component: InvitationsComponent},
+      { path: 'upload', component:UploadComponent},
 
       { path: '**', redirectTo: 'home' },
     ]

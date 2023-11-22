@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService} from '../../services/profile.service'
 
 @Component({
@@ -12,14 +12,18 @@ export class HomeComponent {
   public user: any
   public msjCompletePhotos : any = null
   
-  constructor(private router:Router){}
-  profileServices = inject(ProfileService);
+  constructor( private router:Router, 
+               public activatedRoute:ActivatedRoute,
+               public profileServices: ProfileService           
+               ){}
 
   ngOnInit() {
     this.token = localStorage.getItem('auth');
     this.profileServices.getUserProfile(this.token).subscribe(
       (data) => {
         this.user = data
+        console.log(this.user);
+
         console.log(this.user.imagesProfile);
         
         if(this.user.imagesProfile.length < 0){
@@ -31,5 +35,8 @@ export class HomeComponent {
       }
     )
   }
- 
+
+  redirectUpload(){
+    this.router.navigate(['upload']);
+  }
 }

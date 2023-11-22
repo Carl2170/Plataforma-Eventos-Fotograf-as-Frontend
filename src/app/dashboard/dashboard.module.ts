@@ -12,6 +12,7 @@ import { NavbarHomeComponent } from '../navbar/navbar-home/navbar-home.component
 import { ProfileComponent } from './pages/profile/profile.component';
 import { EventsComponent } from './pages/events/events.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
+import { UploadComponent } from './pages/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { InvitationsComponent } from './pages/invitations/invitations.component'
     HomeComponent,
     ProfileComponent,
     EventsComponent,
-    InvitationsComponent
+    InvitationsComponent,
+    UploadComponent
     ],
   imports: [
     CommonModule,
