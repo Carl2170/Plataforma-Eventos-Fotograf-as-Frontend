@@ -3,7 +3,13 @@
     <div *ngIf="msjCompletePhotos != null" class="alert alert-danger mt-1" >
         <span >{{msjCompletePhotos}} </span>
       </div>
-<h1>Bienvenido</h1>
+<h1>Bienvenidssso</h1>
     <h2>Home</h2>
     <button class="btn btn-primary" (click)="redirectUpload()">Subir imágenes</button>
+
+      <button class="btn btn-primary" (click)="subscribeToNotifications()">Solicitar permiso</button>
+
+      <div>
+        <code>{{respuesta | json}} </code>
+      </div>
 </div>

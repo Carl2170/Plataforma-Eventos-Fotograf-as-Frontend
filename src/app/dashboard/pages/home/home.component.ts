@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfileService} from '../../services/profile.service'
+import { ProfileService} from '../../services/profile.service';
+import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,13 @@ export class HomeComponent {
   public token: any
   public user: any
   public msjCompletePhotos : any = null
-  
+  public readonly VAPID_PUBLIC_KEY = 'BGzCtSrUcTWrqbvo-EWJB-OOUZWJb0fIx2o72n_iv1Oo1QTgDjBTFdCTBE2Yul65asZBvhYlgDXLgTK189bSVek';
+
+  respuesta : any;
   constructor( private router:Router, 
                public activatedRoute:ActivatedRoute,
-               public profileServices: ProfileService           
+               public profileServices: ProfileService,           
+               private swPush: SwPush
                ){}
 
   ngOnInit() {
@@ -38,5 +42,17 @@ export class HomeComponent {
 
   redirectUpload(){
     this.router.navigate(['upload']);
+  }
+
+  subscribeToNotifications(): any {
+    
+    this.swPush.requestSubscription({
+      serverPublicKey: this.VAPID_PUBLIC_KEY
+    }).then(sub => {
+      const token = JSON.parse(JSON.stringify(sub));
+      console.log('*******TOKEN************', token);
+
+    }).catch(err => console.error('UPS:( ', err));
+    
   }
 }

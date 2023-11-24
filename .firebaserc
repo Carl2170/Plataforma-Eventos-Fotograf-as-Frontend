@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "notifipushevents": {
+      "hosting": {
+        "intern-design-front": [
+          "notifipushevents"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "notifipushevents"
+  }
+}
