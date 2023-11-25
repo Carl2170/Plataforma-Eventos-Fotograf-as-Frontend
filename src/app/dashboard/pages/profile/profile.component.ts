@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import{ FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ProfileService} from '../../services/profile.service'
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { SweetAlertService } from '../../services/sweet-alert.service';
+// import { SweetAlertService } from '../../services/sweet-alert.service';
 import { ImagesService } from '../../services/images/images.service';
 
 @Component({
@@ -48,7 +48,7 @@ export class ProfileComponent {
               private authService: AuthService,
               public imagesService:ImagesService ){}
 
-  sweetAlertService = inject(SweetAlertService);
+  // sweetAlertService = inject(SweetAlertService);
 
   get nameUser(){return this.formProfile.get('nameUser') as FormControl}
   get emailUser(){return this.formProfile.get('emailUser') as FormControl}
@@ -85,59 +85,59 @@ export class ProfileComponent {
     );
 }
   async formDataUser(){
-    const data = {
-      name: this.nameUser.value,
-      lastname:  this.lastNameUser.value,
-      email: this.emailUser.value,
-      address: this.addressUser.value,
-      telephone: this.telePhoneUser.value
-    }
-    const confirmResult = await this.sweetAlertService.sweetAlert2(
-      '¿Estás seguro?', '¿Quieres actualizar tus datos?','question',true,true)
-     if(confirmResult.isConfirmed){
-       this.profileService.updateDataUser(data).subscribe(
-         (res)=>{
-           console.log('Backend response: ', res);
-           if('token' in res){
-             const token = res.token as string
-             localStorage.setItem('auth', token)
-           }
-            this.sweetAlertService.sweetAlert2(
-             'Datos actualizados', 'Perfil actualizad','success',false,false)
-           },
-           (error)=>{
-             console.error('Error: ', error);
-           }
-         )
-     }
-  }
+  //   const data = {
+  //     name: this.nameUser.value,
+  //     lastname:  this.lastNameUser.value,
+  //     email: this.emailUser.value,
+  //     address: this.addressUser.value,
+  //     telephone: this.telePhoneUser.value
+  //   }
+  //   const confirmResult = await this.sweetAlertService.sweetAlert2(
+  //     '¿Estás seguro?', '¿Quieres actualizar tus datos?','question',true,true)
+  //    if(confirmResult.isConfirmed){
+  //      this.profileService.updateDataUser(data).subscribe(
+  //        (res)=>{
+  //          console.log('Backend response: ', res);
+  //          if('token' in res){
+  //            const token = res.token as string
+  //            localStorage.setItem('auth', token)
+  //          }
+  //           this.sweetAlertService.sweetAlert2(
+  //            'Datos actualizados', 'Perfil actualizad','success',false,false)
+  //          },
+  //          (error)=>{
+  //            console.error('Error: ', error);
+  //          }
+  //        )
+  //    }
+  // }
 
-  async formDataPass(){
-    const formData ={
-      passUser : this.formPassword.get('passUser')?.value,
-      newPassUser : this.formPassword.get('newPassUser')?.value      
-    }
+  // async formDataPass(){
+  //   const formData ={
+  //     passUser : this.formPassword.get('passUser')?.value,
+  //     newPassUser : this.formPassword.get('newPassUser')?.value      
+  //   }
 
-    const confirmResult = await this.sweetAlertService.sweetAlert2(
-      '¿Estás seguro?', '¿Quieres actualizar tus datos?','question',true,true)
-    if(confirmResult.isConfirmed){
+  //   const confirmResult = await this.sweetAlertService.sweetAlert2(
+  //     '¿Estás seguro?', '¿Quieres actualizar tus datos?','question',true,true)
+  //   if(confirmResult.isConfirmed){
 
-      this.profileService.updatePasswordUser(formData).subscribe(
-        (res)=>{
-          console.log('Backend response: ', res);
-          if('token' in res){
-            const token = res.token as string
-            localStorage.setItem('auth', token)
-          }
-          },
-          (error)=>{
-            if(error.status ==401){
-              this.errorMessage="Contraseña actual incorrecta"
-            }
-            console.error('Error: ', error);
-          }
-      );
-    }
+  //     this.profileService.updatePasswordUser(formData).subscribe(
+  //       (res)=>{
+  //         console.log('Backend response: ', res);
+  //         if('token' in res){
+  //           const token = res.token as string
+  //           localStorage.setItem('auth', token)
+  //         }
+  //         },
+  //         (error)=>{
+  //           if(error.status ==401){
+  //             this.errorMessage="Contraseña actual incorrecta"
+  //           }
+  //           console.error('Error: ', error);
+  //         }
+  //     );
+  //   }
     }
   
   removePreviewImage(index: number): void {
@@ -186,15 +186,15 @@ export class ProfileComponent {
          //const form =  ['uno', 'dos', 'tres']; 
          console.log(form);
           
-          this.profileService.updateImagesProfile(form).subscribe(
-            (res) => {
-              console.log('response backend: ' + res);
-              this.sweetAlertService.sweetAlert2('Añadidas con éxito','Imagenes añadidas al perfil','success', false, false);
-            },
-            (error) => {
-              console.error('Error:', error);
-            }
-          )
+          // this.profileService.updateImagesProfile(form).subscribe(
+          //   (res) => {
+          //     console.log('response backend: ' + res);
+          //     this.sweetAlertService.sweetAlert2('Añadidas con éxito','Imagenes añadidas al perfil','success', false, false);
+          //   },
+          //   (error) => {
+          //     console.error('Error:', error);
+          //   }
+          // )
        
       } catch (error) {
           console.log(error);                  

@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'intern-design-front'`, () => {
+  it(`should have as title 'plataform-events-frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('intern-design-front');
+    expect(app.title).toEqual('plataform-events-frontend');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('intern-design-front app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('plataform-events-frontend app is running!');
   });
 });

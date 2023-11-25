@@ -16,11 +16,10 @@ export const environment = {
         appId: "1:950319103953:web:137ed27cfca263d88eeaf0",
         measurementId: "G-L9H860KYSR"
     }
-    // Public Key:
-    // BGzCtSrUcTWrqbvo-EWJB-OOUZWJb0fIx2o72n_iv1Oo1QTgDjBTFdCTBE2Yul65asZBvhYlgDXLgTK189bSVek
 
-    // Private Key:
-    // C6Gb67sMGwNzPvI5Ag9xq3sLMSSN5DJAAovW-t0JAGs
+    // {"publicKey":"BIYdRaGo9L9oOl8FzaGqf1eQvEme0csMJWUchiDhpFl5oMaYRLNB49EbcUH45_JQNDCZSH1JM0Td2YGbZS_kjpo",
+    // "privateKey":"2O9avXDpFq3dJ5lQOg0wpEXhFr8FPa-bFajR-7w2Tyg"}
+
 
 
      //tokwn firebas
@@ -28,3 +27,5 @@ export const environment = {
 
 };
   
+
+

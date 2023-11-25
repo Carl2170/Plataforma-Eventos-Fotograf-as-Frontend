@@ -54,7 +54,8 @@
                 <div class="card-body">
 
                     <!-- <img src="assets/user.jpg" class="img-circle" alt="Previsualización"> -->
-                    <form [formGroup]="formPassword" (ngSubmit)="formDataPass()" >
+                    <!-- (ngSubmit)="formDataPass()" -->
+                    <form [formGroup]="formPassword"  >
                         <label for="actualPass" class="mt-3">Contraseña actual</label>
                         <input type="password" class="form-control"  formControlName="passUser">
                         <div  [hidden]="passUser.valid || passUser.pristine">

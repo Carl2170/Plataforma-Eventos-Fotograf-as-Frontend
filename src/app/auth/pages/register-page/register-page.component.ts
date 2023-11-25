@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import{ FormGroup,FormControl, Validators, FormBuilder} from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { SweetAlertService } from '../../../dashboard/services/sweet-alert.service';
+// import { SweetAlertService } from '../../../dashboard/services/sweet-alert.service';
 
 
 @Component({
@@ -11,7 +11,9 @@ import { SweetAlertService } from '../../../dashboard/services/sweet-alert.servi
   styleUrls: ['./register-page.component.scss']
 })
 export class RegisterPageComponent {
-  constructor(private authService: AuthService, private router: Router, public sweetAlert : SweetAlertService){}
+  constructor(private authService: AuthService, private router: Router, 
+    // public  sweetAlert : SweetAlertService
+    ){}
 
   private fb: FormBuilder = inject(FormBuilder);
 
@@ -64,7 +66,7 @@ export class RegisterPageComponent {
       console.log(formData)
       this.authService.postRegister(formData).subscribe(
         (res)=>{
-          this.sweetAlert.sweetAlert2('Registro Existoso','Ya has creado una nueva cuenta','success',true,false);
+          // this.sweetAlert.sweetAlert2('Registro Existoso','Ya has creado una nueva cuenta','success',true,false);
           this.router.navigate(['login']);
           console.log('Backend response: ', res);
        

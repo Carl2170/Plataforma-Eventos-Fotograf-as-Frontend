@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfileService} from '../../services/profile.service';
-import { SwPush } from '@angular/service-worker';
+// import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-home',
@@ -18,7 +18,7 @@ export class HomeComponent {
   constructor( private router:Router, 
                public activatedRoute:ActivatedRoute,
                public profileServices: ProfileService,           
-               private swPush: SwPush
+              //  private swPush: SwPush
                ){}
 
   ngOnInit() {
@@ -44,15 +44,15 @@ export class HomeComponent {
     this.router.navigate(['upload']);
   }
 
-  subscribeToNotifications(): any {
+  // subscribeToNotifications(): any {
     
-    this.swPush.requestSubscription({
-      serverPublicKey: this.VAPID_PUBLIC_KEY
-    }).then(sub => {
-      const token = JSON.parse(JSON.stringify(sub));
-      console.log('*******TOKEN************', token);
+  //   this.swPush.requestSubscription({
+  //     serverPublicKey: this.VAPID_PUBLIC_KEY
+  //   }).then(sub => {
+  //     const token = JSON.parse(JSON.stringify(sub));
+  //     console.log('*******TOKEN************', token);
 
-    }).catch(err => console.error('UPS:( ', err));
+  //   }).catch(err => console.error('UPS:( ', err));
     
-  }
+  // }
 }

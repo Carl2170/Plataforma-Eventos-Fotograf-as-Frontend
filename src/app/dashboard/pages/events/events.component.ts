@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import{ FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
 import { EventsService } from '../../services/events/events.service';
-import { SweetAlertService } from '../../services/sweet-alert.service';
+// import { SweetAlertService } from '../../services/sweet-alert.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,7 +28,7 @@ export class EventsComponent {
   
  
   constructor(public eventService : EventsService, 
-              public sweetAlertService:SweetAlertService, 
+              // public sweetAlertService:SweetAlertService, 
               public router: Router) {}
 
   get name(){return this.formEvent.get('name') as FormControl}
@@ -40,25 +40,25 @@ export class EventsComponent {
     this.getEventos();
   }
   async saveEvent(){
-    const data = {
-      name: this.name.value,
-      description: this.description.value,
-      dateTime: `${this.date.value} ${this.time.value}`, 
-    }
-    const confirmResult = await this.sweetAlertService.sweetAlert2(
-      '¿Crear evento?', 'Se creará un nuevo evento','question',true,true);
-     if(confirmResult.isConfirmed){
-       this.eventService.saveEvent(data).subscribe(
-         (res)=>{
-           console.log('Backend response: ', res);
-            this.sweetAlertService.sweetAlert2(
-             'Evento creado', 'Se ha creado un nuevo evento','success',true,false)
-           },
-           (error)=>{
-             console.error('Error: ', error);
-           }
-         )      
-     }
+    // const data = {
+    //   name: this.name.value,
+    //   description: this.description.value,
+    //   dateTime: `${this.date.value} ${this.time.value}`, 
+    // }
+    // const confirmResult = await this.sweetAlertService.sweetAlert2(
+    //   '¿Crear evento?', 'Se creará un nuevo evento','question',true,true);
+    //  if(confirmResult.isConfirmed){
+    //    this.eventService.saveEvent(data).subscribe(
+    //      (res)=>{
+    //        console.log('Backend response: ', res);
+    //         this.sweetAlertService.sweetAlert2(
+    //          'Evento creado', 'Se ha creado un nuevo evento','success',true,false)
+    //        },
+    //        (error)=>{
+    //          console.error('Error: ', error);
+    //        }
+    //      )      
+    //  }
   } 
 
   async getEventos(){

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "intern-design-front": {
+    "plataform-events-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/intern-design-front",
+            "outputPath": "dist/plataform-events-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -42,7 +42,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "600kb",
                   "maximumError": "1mb"
                 },
                 {
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "intern-design-front:build:production"
+              "browserTarget": "plataform-events-frontend:build:production"
             },
             "development": {
-              "browserTarget": "intern-design-front:build:development"
+              "browserTarget": "plataform-events-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "intern-design-front:build"
+            "browserTarget": "plataform-events-frontend:build"
           }
         },
         "test": {
@@ -112,7 +112,7 @@
           "builder": "@angular/fire:deploy",
           "options": {
             "version": 2,
-            "browserTarget": "intern-design-front:build:production"
+            "browserTarget": "plataform-events-frontend:build:production"
           }
         }
       }

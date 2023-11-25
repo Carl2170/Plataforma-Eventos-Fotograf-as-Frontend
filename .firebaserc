@@ -2,7 +2,7 @@
   "targets": {
     "notifipushevents": {
       "hosting": {
-        "intern-design-front": [
+        "plataform-events-frontend": [
           "notifipushevents"
         ]
       }

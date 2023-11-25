@@ -5,6 +5,16 @@ export const environment = {
   
     CLOUDINARY_NAME : 'dfncxpgmk',
     CLOUDINARY_API_KEY :968193478515864,
-    CLOUDINARY_API_SECRET :'zdFB5BtR3feQxgQWTZpeMUmPXEw'
+    CLOUDINARY_API_SECRET :'zdFB5BtR3feQxgQWTZpeMUmPXEw',
+
+    FIREBASE: {
+      apiKey: "AIzaSyANXoKsuk95TfFGNzbWxGG7KgZCAlt4lgw",
+      authDomain: "notifipushevents.firebaseapp.com",
+      projectId: "notifipushevents",
+      storageBucket: "notifipushevents.appspot.com",
+      messagingSenderId: "950319103953",
+      appId: "1:950319103953:web:137ed27cfca263d88eeaf0",
+      measurementId: "G-L9H860KYSR"
+  }
   };
   

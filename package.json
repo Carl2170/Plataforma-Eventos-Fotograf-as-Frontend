@@ -5,9 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "start-pwa": "ng build --prod  && http-server -p 8080 -c-1 dist/plataform-events-frontend"
+    "start-pwa": "ng build --configuration production  && http-server -p 8080 -c-1 dist/plataform-events-frontend"
   },
   "private": true,
   "dependencies": {
@@ -20,7 +21,6 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.12",
-    "@angular/service-worker": "^16.2.12",
     "firebase": "^10.6.0",
     "firebase-tools": "^12.9.1",
     "rxjs": "~7.8.0",

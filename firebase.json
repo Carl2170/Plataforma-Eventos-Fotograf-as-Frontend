@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "intern-design-front",
+      "target": "plataform-events-frontend",
       "source": ".",
       "frameworksBackend": {}
     }
