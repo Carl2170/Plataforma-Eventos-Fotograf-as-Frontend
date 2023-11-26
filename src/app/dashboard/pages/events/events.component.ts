@@ -23,6 +23,7 @@ export class EventsComponent {
     description: [""],
     date: ["",Validators.required],
     time: ["",Validators.required],    
+    place:["",Validators.required],
   })
 
   
@@ -35,15 +36,27 @@ export class EventsComponent {
   get description(){return this.formEvent.get('description') as FormControl}
   get date(){return this.formEvent.get('date') as FormControl}
   get time(){return this.formEvent.get('time') as FormControl}
+  get place(){return this.formEvent.get('place') as FormControl}
 
   ngOnInit(){
+    if(localStorage.getItem('eventSave') =='correct'){
+      this.sweetAlertService.sweetAlert2(
+        'Evento creado',
+        'Se ha creado un nuevo evento',
+        'success',
+        true,
+        false)
+    };
+    
     this.getEventos();
+
   }
   async saveEvent(){
     const data = {
       name: this.name.value,
       description: this.description.value,
       dateTime: `${this.date.value} ${this.time.value}`, 
+      place: this.place.value
     }
     const confirmResult = await this.sweetAlertService.sweetAlert2(
       '¿Crear evento?', 'Se creará un nuevo evento','question',true,true);
@@ -51,9 +64,9 @@ export class EventsComponent {
        this.eventService.saveEvent(data).subscribe(
          (res)=>{
            console.log('Backend response: ', res);
-            this.sweetAlertService.sweetAlert2(
-             'Evento creado', 'Se ha creado un nuevo evento','success',true,false)
-           },
+            localStorage.setItem('eventSave','correct');
+            window.location.reload();
+          },
            (error)=>{
              console.error('Error: ', error);
            }

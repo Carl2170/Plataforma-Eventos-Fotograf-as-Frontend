@@ -1,12 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ImagesService } from '../../services/images/images.service';
-
+import { EventsService } from '../../services/events/events.service';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 @Component({
+
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent {
+
+  private fb: FormBuilder = inject(FormBuilder);
 
   public image: File | null = null;
   selectedFileName: string = 'Sube o Arrastra tu Imagen';
@@ -15,12 +19,25 @@ export class UploadComponent {
   itemsPerPage: number = 3;
   currentPage: number = 1;
   totalPages: number = 0;
-  public arrayImagesProfile :string[] = []
+
+  public arrayImagesUrl: string[] = []
+  events: any;
+  mjsError: string = "";
 
 
-  constructor( public imagesService : ImagesService
-             ){}
+
+  public formUploadImagesEvent: FormGroup = this.fb.group({
+    selectEvent: ["",Validators.required]
+  })
+
+  constructor( 
+    public imagesService : ImagesService,
+    public eventService: EventsService
+  ){}
   
+  ngOnInit(){
+    this.getEventos();
+  }
   onFileSelected(event: any): void {
 
     const files = event.target.files;
@@ -44,6 +61,22 @@ export class UploadComponent {
     }
   }
 
+  async getEventos(){
+    this.eventService.getEventos().subscribe(
+     (data)=>{
+         this.events = data
+       console.log(data);
+       
+         },
+     (error)=>{
+         if(error.status == 409){
+           this.mjsError ="No tiene eventos creados";
+         }
+       console.log(error);
+     }
+    )    
+   }
+
   removePreviewImage(index: number): void {
     this.imagesService.removePreviewImage(index);
   }
@@ -54,5 +87,34 @@ export class UploadComponent {
  
   verifArrayImages(){
     return this.imageFiles.length > 0;
+  }
+
+  async uploadImagesEvent(){
+    const arrayUpload = this.imageFiles
+    console.log(arrayUpload);
+    try {
+      for (let i = 0; i < arrayUpload.length; i++) {
+        const element = arrayUpload[i];
+        const response = await this.imagesService.uploadImage(element).toPromise();
+        if ('secure_url' in response) {
+          const url = response.secure_url as string;
+          this.arrayImagesUrl.push(url);
+        }
+      }
+        const form =  this.arrayImagesUrl;
+        
+        // this.profileService.updateImagesProfile(form).subscribe(
+        //   (res) => {
+        //     console.log('response backend: ' + res);
+        //     this.sweetAlertService.sweetAlert2('Añadidas con éxito','Imagenes añadidas al perfil','success', false, false);
+        //   },
+        //   (error) => {
+        //     console.error('Error:', error);
+        //   }
+        // )
+     
+    } catch (error) {
+        console.log(error);                  
+    }
   }
 }

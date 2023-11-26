@@ -4,12 +4,12 @@
             <h2 class="text-primary">Seleccione el evento</h2>
         </div>
         <div class="card-body">
-            <form action="">
+            <form [formGroup]="formUploadImagesEvent" (ngSubmit)="uploadImagesEvent()" enctype="multipart/form-data" >
                 <div class="row">
                     <div class="col-lg-6">
                         <select name="public" id="" class="form-control col-4 mb-3">
-                            <option selected class="text-dark">Elija un evento</option>
-                            <!-- <option *ngFor="let roomType of roomTypes" [value]="roomType">{{roomType}}</option> -->
+                            <option selected class="text-decoration-line-through">Elija un evento</option>
+                            <option *ngFor="let event of events" [value]="event.name">--- {{event.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-6">

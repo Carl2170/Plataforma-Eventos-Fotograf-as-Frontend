@@ -38,6 +38,24 @@ export class ImagesService {
     );
   }
 
+  uploadImageEvent(file: File, folder: string){
+  
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', "ml_default");
+    formData.append('folder', folder);
+    
+    return this.http.post(this.cloudinaryUrl, formData).pipe(
+      map((response: any) => {
+        return response;
+      }),
+      catchError((error) => {
+        console.error('Error en la carga de la imagen:', error);
+        throw error;
+      })
+    );
+  }
+
   saveImageIA(url: string){
     console.log(url);
     
