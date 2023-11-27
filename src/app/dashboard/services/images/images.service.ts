@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map, catchError } from 'rxjs/operators';
 import { BehaviorSubject } from 'rxjs';
@@ -57,8 +57,7 @@ export class ImagesService {
   }
 
   saveImageIA(url: string){
-    console.log(url);
-    
+    console.log(url);    
     const idUser = localStorage.getItem('iu')
     const api =`${environment.URL}:${environment.PORT}/api/auth/update-imageIA/${idUser}` 
      return(
@@ -98,5 +97,17 @@ export class ImagesService {
 
   existPhotos(){
     return this.arrayImagesUpload.length>0;
+  }
+
+  createImagesEvent(formData: any){
+    const token = localStorage.getItem('auth');
+    
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return(
+      this.http.post(`${this.apiURL}/event/create-images`, formData, { headers })
+      );
   }
 }

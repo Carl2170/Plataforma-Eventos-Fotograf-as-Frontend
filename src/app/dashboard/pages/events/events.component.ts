@@ -46,6 +46,8 @@ export class EventsComponent {
         'success',
         true,
         false)
+
+        localStorage.removeItem('eventSave');
     };
     
     this.getEventos();

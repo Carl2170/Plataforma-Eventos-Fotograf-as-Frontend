@@ -7,16 +7,16 @@
             <form [formGroup]="formUploadImagesEvent" (ngSubmit)="uploadImagesEvent()" enctype="multipart/form-data" >
                 <div class="row">
                     <div class="col-lg-6">
-                        <select name="public" id="" class="form-control col-4 mb-3">
-                            <option selected class="text-decoration-line-through">Elija un evento</option>
-                            <option *ngFor="let event of events" [value]="event.name">--- {{event.name}}</option>
+                        <select name="selectEvent" formControlName='selectEvent' id="" class="form-control col-4 mb-3">
+                            <option selected >Elija un evento</option>
+                            <option *ngFor="let event of events" [value]="event.id">--- {{event.name}}</option>
                         </select>
                     </div>
                     <div class="col-lg-6">
-                        <select name="event" id="" class="form-control col-4">
+                        <select name="selectEventType" formControlName="selectEventType" id="" class="form-control col-4">
                             <option selected><strong>Elija una categoría</strong></option>
                             <option value="public">Públicas</option>
-                            <option value="public">Solo del evento</option>
+                            <option value="event">Solo del evento</option>
                         </select>
                     </div>
                 </div>
@@ -43,7 +43,7 @@
                   </div>
             </div>
             <div  class="d-flex justify-content-start mt-2 mb-3 ">
-                <button [hidden]="!verifArrayImages()" class="btn btn-primary" >Subir imágenes</button>
+    <button class="btn btn-primary" [disabled]="!verifArrayImages()">Subir imágenes</button>
                 </div>
         </form>
         </div>

@@ -2,6 +2,8 @@ import { Component, inject } from '@angular/core';
 import { ImagesService } from '../../services/images/images.service';
 import { EventsService } from '../../services/events/events.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 @Component({
 
   selector: 'app-upload',
@@ -27,7 +29,9 @@ export class UploadComponent {
 
 
   public formUploadImagesEvent: FormGroup = this.fb.group({
-    selectEvent: ["",Validators.required]
+    selectEvent: ['Elija un evento',Validators.required],
+    selectEventType: ['Elija una categoría',Validators.required],
+    
   })
 
   constructor( 
@@ -38,6 +42,11 @@ export class UploadComponent {
   ngOnInit(){
     this.getEventos();
   }
+
+  get selectEvent(){return this.formUploadImagesEvent.get('selectEvent')  as FormControl}
+  get selectEventType(){return this.formUploadImagesEvent.get('selectEventType')  as FormControl}
+
+
   onFileSelected(event: any): void {
 
     const files = event.target.files;
@@ -64,9 +73,7 @@ export class UploadComponent {
   async getEventos(){
     this.eventService.getEventos().subscribe(
      (data)=>{
-         this.events = data
-       console.log(data);
-       
+         this.events = data       
          },
      (error)=>{
          if(error.status == 409){
@@ -91,27 +98,40 @@ export class UploadComponent {
 
   async uploadImagesEvent(){
     const arrayUpload = this.imageFiles
-    console.log(arrayUpload);
     try {
       for (let i = 0; i < arrayUpload.length; i++) {
         const element = arrayUpload[i];
-        const response = await this.imagesService.uploadImage(element).toPromise();
+        const response = await this.imagesService.uploadImageEvent(element, this.selectEvent.value).toPromise();
         if ('secure_url' in response) {
           const url = response.secure_url as string;
           this.arrayImagesUrl.push(url);
         }
       }
-        const form =  this.arrayImagesUrl;
-        
-        // this.profileService.updateImagesProfile(form).subscribe(
-        //   (res) => {
-        //     console.log('response backend: ' + res);
-        //     this.sweetAlertService.sweetAlert2('Añadidas con éxito','Imagenes añadidas al perfil','success', false, false);
-        //   },
-        //   (error) => {
-        //     console.error('Error:', error);
-        //   }
-        // )
+        const formData = {
+           arrayImagesUrl: JSON.stringify(this.arrayImagesUrl),
+          //arrayImagesUrl: this.arrayImagesUrl,
+          event_id: this.selectEvent.value,
+          type: this.selectEventType.value
+        } ;
+                
+        this.imagesService.createImagesEvent(formData).subscribe(
+          (res) => {
+            console.log('response backend: ' + res);
+            Swal.fire({
+              title: '¡Fotos subidas con éxito!',
+              text: 'Fotos añadidas al evento.',
+              icon: "success"
+            });
+          },
+          (error) => {
+            console.error('Error:', error);
+            Swal.fire({
+              title: 'Error',
+              text: 'Ha ocurrido un problema al subir. Intente de nuevo.',
+              icon: "error"
+            });
+          }
+        )
      
     } catch (error) {
         console.log(error);                  
