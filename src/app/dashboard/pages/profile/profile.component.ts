@@ -177,8 +177,8 @@ export class ProfileComponent {
         for (let i = 0; i < arrayUpload.length; i++) {
           const element = arrayUpload[i];
           const response = await this.imagesService.uploadImage(element).toPromise();
-          if ('url' in response) {
-            const url = response.url as string;
+          if ('secure_url' in response) {
+            const url = response.secure_url as string;
             this.arrayUrl.push(url);
           }
         }

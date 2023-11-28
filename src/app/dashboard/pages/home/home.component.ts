@@ -21,11 +21,7 @@ export class HomeComponent {
     this.token = localStorage.getItem('auth');
     this.profileServices.getUserProfile(this.token).subscribe(
       (data) => {
-        this.user = data
-        console.log(this.user);
-
-        console.log(this.user.imagesProfile);
-        
+        this.user = data        
         if(this.user.imagesProfile.length < 0){
           this.msjCompletePhotos = "Por favor agrege fotos a su perfil";
         }

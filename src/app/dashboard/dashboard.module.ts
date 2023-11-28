@@ -13,6 +13,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { EventsComponent } from './pages/events/events.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { CatalogueComponent } from './pages/catalogue/catalogue.component';
+import { GuestsComponent } from './pages/guests/guests.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { UploadComponent } from './pages/upload/upload.component';
     ProfileComponent,
     EventsComponent,
     InvitationsComponent,
-    UploadComponent
+    UploadComponent,
+    CatalogueComponent,
+    GuestsComponent
     ],
   imports: [
     CommonModule,

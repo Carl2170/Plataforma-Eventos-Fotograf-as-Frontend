@@ -49,4 +49,26 @@ export class EventsService {
     this.http.post(`${this.apiURL}/send-msj`,formData , {headers})   
     )
   }
+
+  loadPhotos(idEvent: BigInteger, type: string){
+    const token = localStorage.getItem('auth');    
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return(
+      this.http.get(`${this.apiURL}/load-photos/${idEvent}/${type}` , {headers})   
+      )
+  }
+
+  loadGuests(idEvent: BigInteger, type: string){
+    const token = localStorage.getItem('auth');    
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + token
+    });
+
+    return(
+      this.http.get(`${this.apiURL}/load-guests/${idEvent}/${type}` , {headers})   
+      )
+  }
 }

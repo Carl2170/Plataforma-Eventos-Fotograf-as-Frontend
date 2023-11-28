@@ -8,6 +8,8 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { EventsComponent } from './pages/events/events.component';
 import { InvitationsComponent } from './pages/invitations/invitations.component';
 import { UploadComponent } from './pages/upload/upload.component';
+import { CatalogueComponent } from './pages/catalogue/catalogue.component';
+import { GuestsComponent } from './pages/guests/guests.component';
 
 const routes: Routes = [
   { path: '',
@@ -20,6 +22,8 @@ const routes: Routes = [
       { path: 'event', component: EventsComponent},
       { path: 'invitations', component: InvitationsComponent},
       { path: 'upload', component:UploadComponent},
+      { path: 'catalogues', component:CatalogueComponent},
+      { path: 'guests', component:GuestsComponent},
 
       { path: '**', redirectTo: 'home' },
     ]

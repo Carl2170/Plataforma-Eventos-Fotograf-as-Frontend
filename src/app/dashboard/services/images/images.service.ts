@@ -110,4 +110,10 @@ export class ImagesService {
       this.http.post(`${this.apiURL}/event/create-images`, formData, { headers })
       );
   }
+
+   rekognitionIA(formData: any){
+    return(
+      this.http.post(`${this.apiURL}/event/rekognitionAI`, formData )
+      );
+  }
 }

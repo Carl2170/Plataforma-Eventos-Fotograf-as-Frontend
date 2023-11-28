@@ -30,8 +30,8 @@
                     <input type="text" class="form-control"[(ngModel)]=newEmail placeholder="juan@gmail.com">      
                 </div>
                 <div class="col-lg-3 mt-4">
-                 <button (click)="addEmail()" class="btn btn-primary">Enviar invitación</button>
-                 <button (click)="sendMsj()" class="btn btn-success ml-2">Enviar msj</button>
+                 <button (click)="addEmail()" class="btn btn-primary">+ invitado</button>
+                 <button (click)="sendMsj()" class="btn btn-success ml-2 mt-2">Enviar invitaciones</button>
 
                 </div>
             </div>
@@ -43,12 +43,12 @@
                         <div class="col-lg-6">
                             {{ correo }}
                         </div>
-                        <div class="col-lg-3">
+                        <div class="d-flex flex-row align-items-center">
                             <button (click)="deleteEmail(i)" class="btn btn-danger ml-2">Eliminar</button>
+                            <button (click)="sendInvitation()" class="btn btn-primary ml-2">Eliminar</button>
                             
                         </div>
                     </div>
-                    <button (click)="sendInvitation()" class="btn btn-primary ml-2">Eliminar</button>
 
                   </div>
                 </div>

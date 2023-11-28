@@ -80,7 +80,6 @@ export class EventsComponent {
    this.eventService.getEventos().subscribe(
     (data)=>{
         this.events = data
-      console.log(data);
       
         },
     (error)=>{
@@ -93,9 +92,17 @@ export class EventsComponent {
   }
 
   toInvitation(id:string){
-    console.log(id);
     localStorage.setItem('idEvent', id);    
     this.router.navigate(['invitations']);
-    
+  }
+
+  toPhotos(id: any){
+    localStorage.setItem('idEventPhotos', id);
+    this.router.navigate(['catalogues']);
+  }
+
+  toGuest(id: any){
+    localStorage.setItem('idEventGuest', id);
+    this.router.navigate(['guests']);
   }
 }

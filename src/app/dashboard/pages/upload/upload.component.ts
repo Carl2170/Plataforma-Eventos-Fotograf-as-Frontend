@@ -18,6 +18,8 @@ export class UploadComponent {
   selectedFileName: string = 'Sube o Arrastra tu Imagen';
   public imageFiles: File[] = [];
   public  imageUrls: string[] = []
+
+  
   itemsPerPage: number = 3;
   currentPage: number = 1;
   totalPages: number = 0;
@@ -25,8 +27,8 @@ export class UploadComponent {
   public arrayImagesUrl: string[] = []
   events: any;
   mjsError: string = "";
-
-
+  idUser: any;
+  data:any;
 
   public formUploadImagesEvent: FormGroup = this.fb.group({
     selectEvent: ['Elija un evento',Validators.required],
@@ -113,15 +115,41 @@ export class UploadComponent {
           event_id: this.selectEvent.value,
           type: this.selectEventType.value
         } ;
-                
+
         this.imagesService.createImagesEvent(formData).subscribe(
           (res) => {
+            this.data =res;
+            this.idUser = this.data.userID;
             console.log('response backend: ' + res);
             Swal.fire({
               title: '¡Fotos subidas con éxito!',
               text: 'Fotos añadidas al evento.',
               icon: "success"
             });
+
+            const formData1 = {
+             event_id: this.selectEvent.value,
+             type: this.selectEventType.value,
+             user_id: this.idUser
+            };
+   
+            
+            if(this.selectEventType.value =='event'){
+              console.log('estoy aca antes de llamar a rekogniton');
+              
+              this.imagesService.rekognitionIA(formData1).subscribe(
+                (res)=>{
+                  console.log('resultado de rekognition');
+                  
+                  console.log(res);
+                },
+                (error)=>{
+                  console.log(error);
+                }
+              )
+            }else{
+              console.log('no llamo a rekognition');
+            }
           },
           (error) => {
             console.error('Error:', error);
@@ -131,8 +159,7 @@ export class UploadComponent {
               icon: "error"
             });
           }
-        )
-     
+        );
     } catch (error) {
         console.log(error);                  
     }

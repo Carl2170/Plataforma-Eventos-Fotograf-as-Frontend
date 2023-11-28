@@ -19,9 +19,7 @@ export class NavbarHomeComponent {
   ngOnInit(){
     this.token = localStorage.getItem('auth');
     this.profileService.getUserProfile(this.token).subscribe(
-      (data) => {
-        console.log(data);
-        
+      (data) => {        
         this.user = data;
         this.name = this.user.name;
         //constante por el momento
